@@ -1,0 +1,12 @@
+.*
+*.backup*
+*.bak*
+*.db
+*.git-crypt-key
+*.hidden
+*.log
+*.old*
+*.orig*
+*.sample
+Makefile.vars
+terraform.plan
