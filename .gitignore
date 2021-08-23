@@ -8,5 +8,6 @@
 *.old*
 *.orig*
 *.sample
+*.tf
 Makefile.vars
 terraform.plan
