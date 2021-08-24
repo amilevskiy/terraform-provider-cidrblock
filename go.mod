@@ -8,5 +8,3 @@ require (
 	inet.af/netaddr v0.0.0-20210729200904-31d5ee66059c
 	github.com/amilevskiy/cidrblock v0.0.2
 )
-
-replace github.com/amilevskiy/terraform-provider-cidrblock/internal/provider => ./internal/provider
