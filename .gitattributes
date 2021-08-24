@@ -1,4 +1,0 @@
-.gitattributes !filter !diff
-*.tfstate* filter=git-crypt diff=git-crypt
-*.key filter=git-crypt diff=git-crypt
-provider.tf filter=git-crypt diff=git-crypt
