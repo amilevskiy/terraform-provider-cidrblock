@@ -21,6 +21,7 @@ func dataSourceCidrBlockSummarization() *schema.Resource {
 			"cidr_blocks": {
 				Description: "The list of the IPv4 address and network mask in CIDR notation.",
 				Type:        schema.TypeSet,
+				Required:    true,
 				Elem: &schema.Schema{
 					Type:         schema.TypeString,
 					ValidateFunc: validation.IsCIDR,
