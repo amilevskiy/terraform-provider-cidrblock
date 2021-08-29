@@ -10,11 +10,11 @@ import (
 	"github.com/amilevskiy/cidrblock"
 )
 
-func dataSourceCidrBlock() *schema.Resource {
+func dataSourceCidrBlockAllocation() *schema.Resource {
 	return &schema.Resource{
 		Description: "Use this data source to get the list of CIDRs to create subnets.",
 
-		ReadContext: dataSourceCidrBlockRead,
+		ReadContext: dataSourceCidrBlockAllocationRead,
 
 		Schema: map[string]*schema.Schema{
 			"cidr_block": {
@@ -56,7 +56,7 @@ func dataSourceCidrBlock() *schema.Resource {
 	}
 }
 
-func dataSourceCidrBlockRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+func dataSourceCidrBlockAllocationRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	var err error
 
 	cb := cidrblock.New()

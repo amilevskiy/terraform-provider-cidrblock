@@ -24,7 +24,8 @@ func init() {
 func New() *schema.Provider {
 	return &schema.Provider{
 		DataSourcesMap: map[string]*schema.Resource{
-			"cidrblock_allocation": dataSourceCidrBlock(),
+			"cidrblock_allocation":    dataSourceCidrBlockAllocation(),
+			"cidrblock_summarization": dataSourceCidrBlockSummarization(),
 		},
 	}
 }
