@@ -13,7 +13,7 @@ Use this data source to get the list of summarized CIDRs.
 ## Example Usage
 
 ```terraform
-data "cidrblock_summarization" "subnet" {
+data "cidrblock_summarization" "vpc" {
   cidr_blocks = [
     "10.192.0.0/22",
     "10.192.4.0/22",
@@ -24,9 +24,9 @@ data "cidrblock_summarization" "subnet" {
   ]
 }
 
-# cidr_blocks = tolist(["10.192.0.0/20", "10.192.16.0/21"])
+# summarized_cidr_blocks = tolist(["10.192.0.0/20", "10.192.16.0/21"])
 output "summarized_cidr_blocks" {
-  value = data.cidrblock_summarization.subnet.summarized_cidr_blocks
+  value = data.cidrblock_summarization.vpc.summarized_cidr_blocks
 }
 ```
 
