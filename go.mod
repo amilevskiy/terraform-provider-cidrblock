@@ -7,7 +7,6 @@ require (
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/amilevskiy/cidrblock v0.0.2
 	github.com/fatih/color v1.12.0 // indirect
-	github.com/golang/snappy v0.0.1 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-hclog v0.16.2 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
@@ -23,7 +22,6 @@ require (
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
-	github.com/pierrec/lz4 v2.0.5+incompatible // indirect
 	github.com/zclconf/go-cty v1.9.1 // indirect
 	golang.org/x/net v0.0.0-20210825183410-e898025ed96a // indirect
 	golang.org/x/sys v0.0.0-20210831042530-f4d43177bf5e // indirect
