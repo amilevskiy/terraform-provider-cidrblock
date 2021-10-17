@@ -5,8 +5,13 @@ import (
 	"flag"
 	"log"
 
-	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 	"github.com/amilevskiy/terraform-provider-cidrblock/internal/provider"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
+)
+
+var (
+	version string
+	commit  string
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
