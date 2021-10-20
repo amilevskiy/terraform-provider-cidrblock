@@ -3,7 +3,7 @@ module github.com/amilevskiy/terraform-provider-cidrblock
 go 1.16
 
 require (
-	github.com/PatrickCronin/routesum v0.1.0
+	github.com/PatrickCronin/routesum v0.2.0
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/amilevskiy/cidrblock v0.0.2
 	github.com/fatih/color v1.13.0 // indirect
