@@ -42,21 +42,18 @@ func dataSourceCidrBlockSummarization() *schema.Resource {
 }
 
 func dataSourceCidrBlockSummarizationRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	var err error
-
-	s := make([]string, 0)
+	rtSum := routesum.NewRouteSum()
 	if v, ok := d.GetOk("cidr_blocks"); ok && v.(*schema.Set).Len() > 0 {
 		for _, vv := range v.(*schema.Set).List() {
-			s = append(s, vv.(string))
+			if err := rtSum.InsertFromString(vv.(string)); err != nil {
+				return diag.FromErr(err)
+			}
 		}
 	}
 
-	summarized, err := routesum.Strings(s)
-	if err != nil {
-		return diag.FromErr(err)
-	}
+	summarized := rtSum.SummaryStrings()
 
-	d.SetId(strings.Join(s, ","))
+	d.SetId(strings.Join(summarized, ","))
 	d.Set("summarized_cidr_blocks", summarized)
 
 	return nil
