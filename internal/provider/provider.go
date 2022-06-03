@@ -21,6 +21,7 @@ func init() {
 	}
 }
 
+// New -
 func New() *schema.Provider {
 	return &schema.Provider{
 		DataSourcesMap: map[string]*schema.Resource{
