@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/PatrickCronin/routesum v0.2.0
 	github.com/amilevskiy/cidrblock v0.0.2
-	github.com/hashicorp/terraform-plugin-docs v0.9.0
+	github.com/hashicorp/terraform-plugin-docs v0.10.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.17.0
 )
 
