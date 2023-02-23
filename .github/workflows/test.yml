@@ -2,19 +2,27 @@
 # you can turn it on using a cron schedule for regular testing.
 #
 name: Tests
+
 on:
   pull_request:
     paths-ignore:
       - "README.md"
+      - "LICENSE"
   push:
     paths-ignore:
       - "README.md"
+      - "LICENSE"
   # For systems with an upstream API that could drift unexpectedly (like most SaaS systems, etc.),
   # we recommend testing at a regular interval not necessarily tied to code changes. This will
   # ensure you are alerted to something breaking due to an API change, even if the code did not
   # change.
   # schedule:
   #   - cron: '0 13 * * *'
+
+# Testing only needs permissions to read the repository contents.
+permissions:
+  contents: read
+
 jobs:
   # ensure the code builds...
   build:
@@ -22,22 +30,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Set up Go
-        id: go
-        uses: actions/setup-go@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
         with:
-          go-version: "1.20.1"
-
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
-
-      - name: Get dependencies
-        run: |
-          go mod download
-
-      - name: Build
-        run: |
-          go build -v .
+          go-version-file: "go.mod"
+          cache: true
+      - run: go mod download
+      - run: go build -v .
 
   # run acceptance tests in a matrix with Terraform core versions
   test:
@@ -57,31 +56,19 @@ jobs:
           - "1.0.11"
           - "1.1.9"
           - "1.2.9"
-          - "1.3.9"
+          - "1.3.*"
     steps:
-      - name: Set up Go
-        id: go
-        uses: actions/setup-go@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
         with:
-          go-version: "1.20.1"
-
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
-
-      - name: Get dependencies
-        run: |
-          go mod download
-
-      - name: TF acceptance tests
-        timeout-minutes: 10
-        env:
+          go-version-file: "go.mod"
+          cache: true
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ matrix.terraform }}
+          terraform_wrapper: false
+      - run: go mod download
+      - env:
           TF_ACC: "1"
-          TF_ACC_TERRAFORM_VERSION: ${{ matrix.terraform }}
-
-          # Set whatever additional acceptance test env vars here. You can
-          # optionally use data from your repository secrets using the
-          # following syntax:
-          # SOME_VAR: ${{ secrets.SOME_VAR }}
-
-        run: |
-          go test -v -cover ./internal/provider/
+          ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH: "go1.20"
+        run: go test -v -cover ./internal/provider/
